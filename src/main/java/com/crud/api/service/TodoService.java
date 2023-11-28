@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class TodoService {
@@ -20,6 +21,12 @@ public class TodoService {
     public List<Todo> list(){
         return todoRepository.findAll();
     }
+
+    public Todo listById(Long id){
+        Optional<Todo> productId = todoRepository.findById(id);
+        return productId.get();
+    }
+
     public List<Todo> update(Todo todo){
         todoRepository.save(todo);
         return list();

@@ -3,6 +3,7 @@ package com.crud.api.controller;
 import com.crud.api.entity.Todo;
 import com.crud.api.service.TodoService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -22,6 +23,12 @@ public class TodoController {
     @GetMapping
     public List<Todo> list(){
         return todoService.list();
+    }
+
+    @GetMapping("{id}")
+    public ResponseEntity<Todo> listById(@PathVariable Long id){
+       Todo listById = todoService.listById(id);
+       return ResponseEntity.ok(listById);
     }
 
     @PutMapping
